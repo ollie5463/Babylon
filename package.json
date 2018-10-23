@@ -1,0 +1,19 @@
+{
+  "name": "babylon",
+  "version": "1.0.0",
+  "description": "CDN is a network which hosts the files you need to save you from adding them in the folder, it can be linked as a dependency.<br/> -- not using the minified version of BabylonJS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ollie5463/Babylon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ollie5463/Babylon/issues"
+  },
+  "homepage": "https://github.com/ollie5463/Babylon#readme"
+}
