@@ -18,6 +18,7 @@
   "homepage": "https://github.com/ollie5463/Babylon#readme",
   "dependencies": {
     "babylonjs": "^3.3.0",
-    "es6": "0.0.7"
+    "es6": "0.0.7",
+    "preview": "^0.1.3"
   }
 }

@@ -14,6 +14,6 @@ class SceneGenerator {
         this.camera = new Camera(cameraSpeed, nameOfCamera, x, y, z, this.scene);
     }
     createMaze(difficulty, width, height) {
-        this.maze = new MazeGenerator(difficulty, width, height);
+        this.maze = new MazeGenerator(difficulty, width, height, this.scene);
     }
 }
