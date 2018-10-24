@@ -2,8 +2,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>BabylonJS</title>
+    <title>Maze Game</title>
     <script src="https://cdn.babylonjs.com/babylon.max.js"></script>
+    <!-- If online -->
+    <!-- <script src=""></script> -->
+    <!-- If offline -->
     <style>
         #canvas {
             width: 100%;
@@ -14,7 +17,9 @@
 
 <body>
     <canvas id="canvas"></canvas>
-    <script src="app.js"></script>
+    <script src="src/Camera.js"></script>
+    <script src="src/generators/MazeGenerator.js"></script>
+    <script src="src/app.js"></script>
 </body>
 
 </html>

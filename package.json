@@ -10,10 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/ollie5463/Babylon.git"
   },
-  "author": "",
+  "author": "OllieBannister",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ollie5463/Babylon/issues"
   },
-  "homepage": "https://github.com/ollie5463/Babylon#readme"
+  "homepage": "https://github.com/ollie5463/Babylon#readme",
+  "dependencies": {
+    "babylonjs": "^3.3.0",
+    "es6": "0.0.7"
+  }
 }
