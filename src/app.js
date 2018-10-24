@@ -5,28 +5,21 @@ var freeCamera;
 window.addEventListener("DOMContentLoaded", function () {
     canvas = document.getElementById("canvas");
     engine = new BABYLON.Engine(canvas, true);
-
-    createScene();
+    var scene1 = createDefualtScene();
+    createWASDControlKeys(scene1.camera.camera, canvas);
+    scene1.createMaze(HARD, 50, 10000);
     engine.runRenderLoop(function () {
-        updateCameraPos();
-        scene.render();
+        updateCameraPos(scene1);
+        scene1.scene.render();
     });
 });
 
-function updateCameraPos() {
-    freeCamera.camera.position.z += freeCamera.cameraSpeed;
+function updateCameraPos(scene) {
+    scene.camera.camera.position.z += scene.camera.cameraSpeed;
 }
 
-var createScene = function () {
-    scene = new BABYLON.Scene(engine);
-    scene.clearColor = new BABYLON.Color3(0, 0.1, 0.1);
-    createBasicSceneWithFreeCamera();
-}
-
-function createBasicSceneWithFreeCamera() {
-    var maze = new MazeGenerator(HARD, 50, 10000);
-    freeCamera = new Camera(0.5, "freeCamera", 0, 5, -100, scene);
-    createWASDControlKeys(freeCamera.camera, canvas);
+var createDefualtScene = function () {
+    return new SceneGenerator(engine, 0.5, "freeCamera", 0, 5, -100);
 }
 
 function createWASDControlKeys(camera, canvas) {

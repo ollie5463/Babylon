@@ -1,5 +1,3 @@
-var cameraSpeed;
-var camera;
 class Camera {
     constructor(cameraSpeed, nameOfCamera, x, y, z, scene) {
         this.createFreeCamera(nameOfCamera, x, y, z, scene);
@@ -13,10 +11,6 @@ class Camera {
     setCameraSpeed(cameraSpeed) {
         this.cameraSpeed = cameraSpeed;
     }
-    // get cameraSpeed()
-    // get camera() {
-    //     return camera;
-    // }
 }
 
 
