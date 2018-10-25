@@ -13,7 +13,20 @@ class SceneGenerator {
     createFreeCamera(cameraSpeed, nameOfCamera, x, y, z) {
         this.camera = new Camera(cameraSpeed, nameOfCamera, x, y, z, this.scene);
     }
+    createBackGround(width, height) {
+        let args = {};
+        args.width = width;
+        args.height = height;
+        args.scene = this.scene;
+        this.maze = new MazeGenerator(args);
+    }
     createMaze(difficulty, width, height) {
-        this.maze = new MazeGenerator(difficulty, width, height, this.scene);
+        let args = {};
+        args.width = width;
+        args.height = height;
+        args.scene = this.scene;
+        args.difficulty = difficulty;
+        this.maze = new MazeGenerator(args);
+
     }
 }

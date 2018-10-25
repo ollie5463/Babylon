@@ -5,12 +5,13 @@ window.addEventListener("DOMContentLoaded", function () {
     engine = new BABYLON.Engine(canvas, true);
     var scene1 = createDefualtScene();
     createWADControlKeys(scene1.camera.camera, canvas);
-    scene1.createMaze(HARD, 50, 10000);
+    scene1.createBackGround(50, 10000);
+    // scene1.createMaze(50, 10000);
     createTitle(scene1);
-    createStartButtons();
+    createStartButtons(scene1);
 
     engine.runRenderLoop(function () {
-        // updateCameraPos(scene1);
+        updateCameraPos(scene1);
         scene1.scene.render();
     });
 });
@@ -20,10 +21,10 @@ function updateCameraPos(scene) {
 }
 
 var createDefualtScene = function () {
-    return new SceneGenerator(engine, 0.5, "freeCamera", 0, 5, -100);
+    return new SceneGenerator(engine, 0, "freeCamera", 0, 5, -100);
 }
 
-function createStartButtons() {
+function createStartButtons(scene) {
     var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
     // levels
     // easy button
@@ -34,12 +35,29 @@ function createStartButtons() {
     easyButton.height = "40px";
     easyButton.paddingTop = -80;
     easyButton.paddingBottom = 80;
+    easyButton.onPointerClickObservable.add(function () {
+        scene.createMaze(EASY, 50, 10000);
+        easyButton.isVisible = false;
+        mediumButton.isVisible = false;
+        hardButton.isVisible = false;
+        scene.camera.cameraSpeed = 0.5;
+
+        // advancedTexture.deleteControl(easyButton);
+        // update camera position from 0
+    });
     // medium button
     var mediumButton = BABYLON.GUI.Button.CreateSimpleButton("but", "Medium");
     mediumButton.width = 0.2;
     mediumButton.color = "white";
     mediumButton.background = "orange";
     mediumButton.height = "40px";
+    mediumButton.onPointerClickObservable.add(function () {
+        scene.createMaze(MEDIUM, 50, 10000);
+        easyButton.isVisible = false;
+        mediumButton.isVisible = false;
+        hardButton.isVisible = false;
+        scene.camera.cameraSpeed = 0.5;
+    });
     // hard button
     var hardButton = BABYLON.GUI.Button.CreateSimpleButton("but", "Hard");
     hardButton.width = 0.2;
@@ -48,6 +66,14 @@ function createStartButtons() {
     hardButton.height = "40px";
     hardButton.paddingTop = 80;
     hardButton.paddingBottom = -80;
+    // hardButton.onPointerClickObservable.add((() => {createMaze() }))
+    hardButton.onPointerClickObservable.add(function () {
+        scene.createMaze(HARD, 50, 10000);
+        easyButton.isVisible = false;
+        mediumButton.isVisible = false;
+        hardButton.isVisible = false;
+        scene.camera.cameraSpeed = 0.5;
+    });
 
     advancedTexture.addControl(easyButton);
     advancedTexture.addControl(mediumButton);

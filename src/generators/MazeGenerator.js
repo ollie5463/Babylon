@@ -3,12 +3,13 @@ const MEDIUM = Symbol("MEDIUM");
 const HARD = Symbol("HARD");
 var level;
 class MazeGenerator {
-    constructor(difficulty, width, height, scene) {
-        this.createFuturisticGround(width, height);
-        this.createBlockMaze(difficulty);
-        this.scene = scene;
+    constructor(args) {
+        if (args.difficulty !== undefined) {
+            this.createBlockMaze(args.difficulty);
+        }
+        this.createFuturisticGround(args.width, args.height);
+        this.scene = args.scene;
     }
-
     createBlockMaze(difficulty) {
         var level = this.getBrickSpawningLevel(difficulty);
         for (let gridHeight = 0; gridHeight < 1000; gridHeight += level) {
