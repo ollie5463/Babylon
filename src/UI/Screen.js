@@ -7,6 +7,7 @@ export default class Screen {
         if (args.screenType === HOMESCREEN) {
             this.createHomeScreen();
         }
+        this.score = args.score;
         this.buttons = [];
         this.scene = args.scene;
     }
@@ -21,7 +22,7 @@ export default class Screen {
             this.createButtons(data.buttons);
         }))
     }
-    createTitle() { // come back and change this to 2d text
+    createTitle() { // come back and change this to 3d text
         var title = BABYLON.Mesh.CreateBox("Title", 10, this.scene);
         title.position = new BABYLON.Vector3(0, 20, 0);
         title.scaling.x = 6;
@@ -44,6 +45,7 @@ export default class Screen {
             button.onPointerClickObservable.add((() => {
                 this.scene.createMaze(buttonData.name);
                 this.deleteButtons();
+                this.score.setShouldScoreBeDisplayed(true);
             }))
             advancedTexture.addControl(button);
         });

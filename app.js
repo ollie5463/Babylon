@@ -4,9 +4,11 @@ import SceneGenerator from './src/generators/SceneGenerator';
 import Screen from './src/UI/Screen.js';
 import { EASY, MEDIUM, HARD } from './src//generators/MazeGenerator';
 import { HOMESCREEN } from './src/UI/Screen';
+import Score from './src/UI/Score';
 
 var engine;
 var canvas;
+var score = false;
 window.addEventListener("DOMContentLoaded", function () {
     canvas = document.getElementById("canvas");
     engine = new BABYLON.Engine(canvas, true);
@@ -14,16 +16,20 @@ window.addEventListener("DOMContentLoaded", function () {
     createWADControlKeys(scene1.camera.camera, canvas);
     scene1.createBackGround(50, 10000);
     let args = {};
+    var score = new Score();
     args.screenType = HOMESCREEN;
     args.scene = scene1;
+    args.score = score;
     var screen = new Screen(args);
 
     engine.runRenderLoop(function () {
         updateCameraPos(scene1);
+        if (score.shouldScoreBeDisplayed) {
+            console.log(score.getScore());
+        }
         scene1.scene.render();
     });
 });
-
 function updateCameraPos(scene) {
     scene.camera.camera.position.z += scene.camera.cameraSpeed;
 }

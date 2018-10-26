@@ -764,6 +764,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_generators_SceneGenerator__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/generators/SceneGenerator */ "./generators/SceneGenerator.js");
 /* harmony import */ var _src_UI_Screen_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./src/UI/Screen.js */ "./UI/Screen.js");
 /* harmony import */ var _src_generators_MazeGenerator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./src//generators/MazeGenerator */ "./generators/MazeGenerator.js");
+/* harmony import */ var _src_UI_Score__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./src/UI/Score */ "./UI/Score.js");
+
 
 
 
@@ -773,6 +775,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var engine;
 var canvas;
+var score = false;
 window.addEventListener("DOMContentLoaded", function () {
     canvas = document.getElementById("canvas");
     engine = new babylonjs__WEBPACK_IMPORTED_MODULE_0__["Engine"](canvas, true);
@@ -780,16 +783,20 @@ window.addEventListener("DOMContentLoaded", function () {
     createWADControlKeys(scene1.camera.camera, canvas);
     scene1.createBackGround(50, 10000);
     let args = {};
+    var score = new _src_UI_Score__WEBPACK_IMPORTED_MODULE_5__["default"]();
     args.screenType = _src_UI_Screen_js__WEBPACK_IMPORTED_MODULE_3__["HOMESCREEN"];
     args.scene = scene1;
+    args.score = score;
     var screen = new _src_UI_Screen_js__WEBPACK_IMPORTED_MODULE_3__["default"](args);
 
     engine.runRenderLoop(function () {
         updateCameraPos(scene1);
+        if (score.shouldScoreBeDisplayed) {
+            console.log(score.getScore());
+        }
         scene1.scene.render();
     });
 });
-
 function updateCameraPos(scene) {
     scene.camera.camera.position.z += scene.camera.cameraSpeed;
 }
@@ -11269,6 +11276,38 @@ class Camera {
 
 /***/ }),
 
+/***/ "./UI/Score.js":
+/*!*********************!*\
+  !*** ./UI/Score.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Score; });
+
+class Score {
+    constructor() {
+        this.score = 0;
+        this.shouldScoreBeDisplayed = false;
+    }
+
+    shouldScoreBeDisplayed() {
+        return this.shouldScoreBeDisplayed;
+    }
+
+    setShouldScoreBeDisplayed(boolean) {
+        this.shouldScoreBeDisplayed = boolean;
+    }
+
+    getScore() {
+        return this.score++
+    }
+}
+
+/***/ }),
+
 /***/ "./UI/Screen.js":
 /*!**********************!*\
   !*** ./UI/Screen.js ***!
@@ -11293,6 +11332,7 @@ class Screen {
         if (args.screenType === HOMESCREEN) {
             this.createHomeScreen();
         }
+        this.score = args.score;
         this.buttons = [];
         this.scene = args.scene;
     }
@@ -11330,6 +11370,7 @@ class Screen {
             button.onPointerClickObservable.add((() => {
                 this.scene.createMaze(buttonData.name);
                 this.deleteButtons();
+                this.score.setShouldScoreBeDisplayed(true);
             }))
             advancedTexture.addControl(button);
         });
