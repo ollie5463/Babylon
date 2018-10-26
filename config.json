@@ -1,0 +1,12 @@
+{
+    "buttons": {
+        "easy": {
+            "color": "white",
+            "width": 0.2,
+            "background": "green",
+            "height": "40px",
+            "paddingTop": -80,
+            "paddingBottom": 80
+        }
+    }
+}

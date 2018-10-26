@@ -1,4 +1,4 @@
-class SceneGenerator {
+export default class SceneGenerator {
     constructor(engine, cameraSpeed, nameOfCamera, x, y, z) {
         this.engine = engine;
         this.createScene();
