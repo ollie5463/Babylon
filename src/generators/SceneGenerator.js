@@ -1,6 +1,6 @@
 import Camera from '../Camera';
+import { EASY, MEDIUM, HARD } from './MazeGenerator';
 import MazeGenerator from './MazeGenerator';
-// import { EASY, MEDIUM, HARD } from './MazeGenerator';
 export default class SceneGenerator {
     constructor(engine, cameraSpeed, nameOfCamera, x, y, z) {
         this.engine = engine;
@@ -23,13 +23,26 @@ export default class SceneGenerator {
         args.scene = this.scene;
         this.maze = new MazeGenerator(args);
     }
-    createMaze(difficulty, width, height) {
-        let args = {};
-        args.width = width;
-        args.height = height;
+    createMaze(difficulty) {
+        var args = {};
+        args.width = 50;
+        args.height = 10000;
         args.scene = this.scene;
-        args.difficulty = difficulty;
-        this.maze = new MazeGenerator(args);
+        switch (difficulty) {
+            case "EASY":
+                args.difficulty = EASY;
+                this.camera.setCameraSpeed(0.5);
+                break;
+            case "MEDIUM":
+                args.difficulty = MEDIUM;
+                this.camera.setCameraSpeed(1);
+                break;
+            case "HARD":
+                args.difficulty = HARD;
+                this.camera.setCameraSpeed(1.5);
+                break;
+        }
 
+        this.maze = new MazeGenerator(args);
     }
 }

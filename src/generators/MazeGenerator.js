@@ -4,6 +4,7 @@ export const HARD = Symbol("HARD");
 var level;
 export default class MazeGenerator {
     constructor(args) {
+
         if (args.difficulty !== undefined) {
             this.createBlockMaze(args.difficulty);
         }

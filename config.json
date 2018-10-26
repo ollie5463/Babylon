@@ -1,12 +1,31 @@
 {
-    "buttons": {
-        "easy": {
+    "buttons": [
+        {
+            "name": "EASY",
             "color": "white",
             "width": 0.2,
             "background": "green",
             "height": "40px",
             "paddingTop": -80,
             "paddingBottom": 80
+        },
+        {
+            "name": "MEDIUM",
+            "color": "white",
+            "width": 0.2,
+            "background": "orange",
+            "height": "40px",
+            "paddingTop": 0,
+            "paddingBottom": 0
+        },
+        {
+            "name": "HARD",
+            "color": "white",
+            "width": 0.2,
+            "background": "red",
+            "height": "40px",
+            "paddingTop": 80,
+            "paddingBottom": -80
         }
-    }
+    ]
 }
