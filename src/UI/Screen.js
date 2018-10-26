@@ -1,5 +1,5 @@
 // const fs = require('fs');
-class Screen {
+export default class Screen {
     constructor() {
         this.testFunction();
         // this.buttons = args.buttons;

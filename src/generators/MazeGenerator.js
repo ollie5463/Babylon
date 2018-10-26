@@ -1,8 +1,8 @@
-const EASY = Symbol("EASY");
-const MEDIUM = Symbol("MEDIUM");
-const HARD = Symbol("HARD");
+export const EASY = Symbol("EASY");
+export const MEDIUM = Symbol("MEDIUM");
+export const HARD = Symbol("HARD");
 var level;
-class MazeGenerator {
+export default class MazeGenerator {
     constructor(args) {
         if (args.difficulty !== undefined) {
             this.createBlockMaze(args.difficulty);

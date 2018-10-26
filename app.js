@@ -1,5 +1,8 @@
 import * as BABYLON from 'babylonjs';
+import * as BABYLONGUI from 'babylonjs-gui';
 import SceneGenerator from './src/generators/SceneGenerator';
+import { Screen } from './src/UI/Screen.js';
+import { EASY, MEDIUM, HARD } from './src//generators/MazeGenerator';
 
 var engine;
 var canvas;
@@ -13,7 +16,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     createTitle(scene1);
     let args;
-    var screen = new Screen();
+    // var screen = new Screen();
     createStartButtons(scene1);
 
     engine.runRenderLoop(function () {
@@ -31,7 +34,7 @@ var createDefualtScene = function () {
 }
 
 function createStartButtons(scene) {
-    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+    var advancedTexture = BABYLONGUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
     // levels
     // easy button
     var easyButton = BABYLON.GUI.Button.CreateSimpleButton("but", "Easy");
@@ -91,7 +94,7 @@ function createTitle(scene) { // come back and change this to 2d text
     title.scaling.x = 6;
     title.material = new BABYLON.StandardMaterial("boxMaterial", scene.scene);
     title.material.emissiveColor = new BABYLON.Color3(0, 0, 0);
-    title.material.emissiveTexture = new BABYLON.Texture("../img/blocky_maze.jpg");
+    title.material.emissiveTexture = new BABYLON.Texture("./img/blocky_maze.jpg");
 }
 function createWADControlKeys(camera, canvas) {
     camera.keysUp.push(87); // w

@@ -1,3 +1,6 @@
+import Camera from '../Camera';
+import MazeGenerator from './MazeGenerator';
+// import { EASY, MEDIUM, HARD } from './MazeGenerator';
 export default class SceneGenerator {
     constructor(engine, cameraSpeed, nameOfCamera, x, y, z) {
         this.engine = engine;
@@ -6,7 +9,7 @@ export default class SceneGenerator {
     }
 
     createScene() {
-        this.scene = new BABYLON.Scene(engine);
+        this.scene = new BABYLON.Scene(this.engine);
         this.scene.clearColor = new BABYLON.Color3(0, 0.1, 0.1);
     }
 

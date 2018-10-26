@@ -1,4 +1,5 @@
-class Camera {
+
+export default class Camera {
     constructor(cameraSpeed, nameOfCamera, x, y, z, scene) {
         this.createFreeCamera(nameOfCamera, x, y, z, scene);
         this.cameraSpeed = cameraSpeed;
