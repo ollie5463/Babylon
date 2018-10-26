@@ -1,4 +1,2 @@
 # Babylon
-## Notes
-CDN is a network which hosts the files you need to save you from adding them in the folder, it can be linked as a dependency.<br/>
--- not using the minified version of BabylonJS
+To play this game, first clone the repo, then use npm install to install the dependecies. Finally, run npm start and click on the link to the localhost that is displayed in terminal. To play the game, first choose the level then use the keys WAD to go left, right or forwards.
