@@ -5,6 +5,7 @@ import Screen from './src/UI/Screen.js';
 import { EASY, MEDIUM, HARD } from './src//generators/MazeGenerator';
 import { HOMESCREEN } from './src/UI/Screen';
 import Score from './src/UI/Score';
+import PubSub from 'pubsub-js';
 
 var engine;
 var canvas;
@@ -15,12 +16,19 @@ window.addEventListener("DOMContentLoaded", function () {
     var scene1 = createDefualtScene();
     createWADControlKeys(scene1.camera.camera, canvas);
     scene1.createBackGround(50, 10000);
+
+    var changeShouldScoreBeShown = function (name, boolean) {
+        score.setShouldScoreBeDisplayed = boolean;
+    }
+    PubSub.subscribe("changeScore", changeShouldScoreBeShown);
+
     let args = {};
-    var score = new Score();
+
     args.screenType = HOMESCREEN;
     args.scene = scene1;
-    args.score = score;
+    // args.score = score;
     var screen = new Screen(args);
+    var score = new Score();
 
     engine.runRenderLoop(function () {
         updateCameraPos(scene1);

@@ -1,5 +1,6 @@
 import * as $ from 'jquery';
 import * as BABYLONGUI from 'babylonjs-gui';
+import PubSub from 'pubsub-js';
 
 export const HOMESCREEN = Symbol("homeScreen");
 export default class Screen {
@@ -7,7 +8,6 @@ export default class Screen {
         if (args.screenType === HOMESCREEN) {
             this.createHomeScreen();
         }
-        this.score = args.score;
         this.buttons = [];
         this.scene = args.scene;
     }
@@ -45,7 +45,7 @@ export default class Screen {
             button.onPointerClickObservable.add((() => {
                 this.scene.createMaze(buttonData.name);
                 this.deleteButtons();
-                this.score.setShouldScoreBeDisplayed(true);
+                PubSub.publish("changeScore", true);
             }))
             advancedTexture.addControl(button);
         });
