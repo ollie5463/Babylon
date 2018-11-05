@@ -7,6 +7,7 @@
     "babylonjs": "^3.3.0",
     "babylonjs-gui": "^3.3.0",
     "es6": "^0.0.7",
+    "http-server": "^0.11.1",
     "jquery": "^3.3.1",
     "loader": "^2.1.1",
     "lodash": "^4.17.11",
